@@ -16,6 +16,14 @@ createServer({
           type: 'income',
           category: 'food',
           createdAt: new Date(),
+        },
+        {
+          id:2,
+          title: 'Transactions 2',
+          amount: 300,
+          type: 'outcome',
+          category: 'food',
+          createdAt: new Date(),
         }
       ]
     })
