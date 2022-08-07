@@ -5,7 +5,7 @@ export const GlobalStyle = createGlobalStyle`
     --background:#f0f2f5;
     --red: #e52e4d;
     --blue:#5429cc;
-
+    --green:#1BFF9C;
     --blue-light: #6933ff;
 
     --text-title:#363f5f;
@@ -77,6 +77,20 @@ export const GlobalStyle = createGlobalStyle`
     align-items: center;
     justify-content: center;
 
+  }
+
+  .react-modal-close{
+    position: absolute;
+    right:1.5rem;
+    top:1.5rem;
+    border:0;
+    background: transparent;
+
+    transition: filter 0.2s;
+
+    &:hover{
+      filter: brightness(0.8);
+    }
   }
 
 `
