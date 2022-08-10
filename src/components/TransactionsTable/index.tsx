@@ -15,12 +15,12 @@ interface transaction  {
 
 export function TransactionsTable(){
 
-  const [transactions, setTransactions] = useState<transaction[]>()
+  const [transactions, setTransactions] = useState<transaction[]>([])
   useEffect(()=>{
     api.get('/transactions')
     .then(response => {
-      setTransactions(response.data)
-      
+      setTransactions(response.data.transactions)
+     
     });
     
    
@@ -40,24 +40,30 @@ export function TransactionsTable(){
 
         <tbody>
           {
-          transactions === undefined ?
-           <></> :   
-           transactions.map(item =>{
-
-            return (
-              <tr key={item.id}>
-                <td>{item.title}</td>
-                <td 
-                style={item.type === 'income' ? {color: 'green' } : {color: 'red'}}
-                >
-                   R$ {item.amount}
-                </td>
-                <td>{item.category}</td>
-                <td>{item.createdAt.substring(0,10)}</td>
-            </tr>
-            )
-
-          }) 
+            transactions.map(item =>{
+              return (
+                <tr key={item.id}>
+                  <td>{item.title}</td>
+                  <td 
+                  style={item.type === 'income' ? {color: 'green' } : {color: 'red'}}
+                  >
+                    {new Intl.NumberFormat('pt-BR', {
+                      style:'currency',
+                      currency:'BRL'
+                    }).format(item.amount)
+                    }
+                  </td>
+                  <td>{item.category}</td>
+                  <td>
+                    {new Intl.DateTimeFormat('pt-BR').format(
+                      new Date(item.createdAt)
+                    )}
+                  </td>
+              </tr>
+              )
+  
+            }) 
+          
           }
           
         </tbody>
