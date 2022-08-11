@@ -24,6 +24,9 @@ div{
     font-weight:500;
   }
 
-
+  &.highlight-background{
+    background: var(--green);
+    color:#FFF;
+  }
 }
 `;
